@@ -1,3 +1,5 @@
+import collections
+
 def main():
     # list comprehension
     l = [x**2 for x in range(10)]
@@ -8,15 +10,33 @@ def main():
     t = tuple(str(x) for x in range(10))
 
     d = {x: x+1 for x in range(10)}
-    # Zadanie:
-    # d = { ...... ('ala', 'kotek', 'piesek')}
+    # d = { x[0].upper() + x[1:]: len(x) for x in ('ala', 'kotek', 'piesek')}
+    d = {x.capitalize(): len(x) for x in ('ala', 'kotek', 'piesek')}
     # chcemy uzyskać:
-    # {
-    #     "Ala": 3,
-    #     "Kotek": 5,
-    #     "Piesek": 6,
-    # }
-    print(d)
+    assert d == {
+        "Ala": 3,
+        "Kotek": 5,
+        "Piesek": 6,
+    }
+
+    # Lambda
+    # dwa równoważne sposoby zdefiniowania funkcji f:
+
+    def f(x):
+        ...
+        return x ** 2
+
+    f = lambda x: x ** 2
+
+
+    # rzeczy = ("Szafa", "album", "Biurko")
+    # print(list(sorted(rzeczy, key=str.lower)))  # str.lower("Biurko")
+    # print(list(sorted(rzeczy, key=lambda s: s.lower())))  # "Biurko".lower()
+
+    # rzeczy = (".szafa", "!album", "-biurko")
+    # print(list(sorted(rzeczy, key=lambda s: s[1:])))
+
 
 if __name__ == "__main__":
     main()
+    print("Wszystko ok")
