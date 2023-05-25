@@ -45,12 +45,14 @@ def test_tuple():
     # t.append(5) --> Błąd
     l = list(t)  # tak tworzymy listę z tupli
 
+    # pakowanie
     t2 = 1, 2, 3, 4  # t2 to będzie tuple
     assert t2 == (1, 2, 3, 4)
     zmienna = 1,  # <-- trudny do wykrycia błąd! tupla
     assert zmienna != 1
     assert zmienna == (1,)
 
+    # rozpakowywanie
     n1, n2, n3, n4 = t2  # tu po prawej stronie może być np. lista
     assert n1 == 1
 
@@ -60,7 +62,61 @@ def test_tuple():
     a, b = b, a
     assert a == 2
 
+def test_str():
+    s = "Ala ma kota"
+    assert s[0] == "A"
+    # s[0] = "a"  --> Błąd!
+
+    assert "loading:Kernel..."[8:-3] == "Kernel"
+    assert "loading:Shell..."[8:-3] == "Shell"
+
+    assert "uwaga:sZAzGAyDKfOWrYY!..."[6:19:3] == "szyfr"
+
+
+def test_dict():
+    d = {1: "alfa", 2: "bravo"}
+
+    d2 = {
+        1: "jeden",
+        "dwa": 2,
+        "lista": [1, 2, 3],
+        True: (1, 2, 3),
+        2: test_str,
+        test_str: "jasne"
+    }
+
+    assert 1 in d  # sprawdzamy czy jest taki klucz
+    assert d[1] == "alfa"
+    assert d2[True] == (1, 2, 3)
+
+    liczba_ludnosci = {
+        "Warszawa": 2_000_000,
+        "Kraków": 800_000,
+        "Bagienkowice": 5,
+    }
+    liczba_ludnosci["Radom"] = 200_000
+
+    assert liczba_ludnosci["Warszawa"] == 2000000
+
+    # pętla for po słowniku "jedzie" po kluczach
+    #for x in liczba_ludnosci:
+    #    print(x) # Warszawa, ...
+
+    # values() -> obiekt zwracający kolejne wartości
+    #for x in liczba_ludnosci.values():
+    #    print(x)
+
+    # items() -> tuple (klucz, wartość)
+    for k, v in liczba_ludnosci.items():
+        if v > 500_000:
+            # print(k, ":", v)
+            # print(k + ":", v)
+            print(f"{k}: {v}")
+
+
 if __name__ == "__main__":
     test_list()
     test_tuple()
+    test_dict()
     print("Wszystko OK")
+
