@@ -80,14 +80,14 @@ def test_dict():
         1: "jeden",
         "dwa": 2,
         "lista": [1, 2, 3],
-        True: (1, 2, 3),
+        (1, 2): (1, 2, 3),
         2: test_str,
-        test_str: "jasne"
+        test_str: {"a": "b"},
     }
 
     assert 1 in d  # sprawdzamy czy jest taki klucz
     assert d[1] == "alfa"
-    assert d2[True] == (1, 2, 3)
+    assert d2[(1, 2)] == (1, 2, 3)
 
     liczba_ludnosci = {
         "Warszawa": 2_000_000,
