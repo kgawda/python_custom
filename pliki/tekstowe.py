@@ -38,6 +38,9 @@ def main():
             columns = map(str.lstrip, columns)  # usuń spacje z początków
             print(list(columns))
 
+        # Zadanie: stworzyć (i wydrukować) słownik, gdzie kluczem będzie Cell local ID, a wartością technologia
+        # Przykład wydruku:
+        # {0: "L18", 1: "L18", ...}
 
 if __name__ == "__main__":
     main()
