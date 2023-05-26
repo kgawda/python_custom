@@ -58,5 +58,6 @@ def main():
     # Przykład wydruku:
     # {0: "L18", 1: "L18", ...}
 
+
 if __name__ == "__main__":
     main()
