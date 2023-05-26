@@ -1,0 +1,30 @@
+df = pd.read_csv(r"C:\Users\kurs\Downloads\dane\netflix_daily_top_10.csv")
+df[:2]
+df[:5]
+df['Days In Top 10']
+df['Days In Top 10'].max()
+df['Viewership Score'].mean()
+df['Viewership Score'].describe()
+df.Type
+df.Type.unique()
+df.Type == 'Stand-Up Comedy'
+df[df.Type == 'Stand-Up Comedy']
+df[df['Viewership Score'] < 10].Title.unique()
+df[df.Type == 'Stand-Up Comedy'].Title.unique()
+df = pd.read_csv(r"C:\Users\kurs\Downloads\dane\netflix_daily_top_10.csv", encoding='utf-8')
+df[df.Type == 'Stand-Up Comedy'].Title
+df[df.Type == 'Stand-Up Comedy'].Title.iloc[0]
+print(df[df.Type == 'Stand-Up Comedy'].Title.iloc[0])
+#df[df['Viewership Score'] < 10].Title
+list(df)
+df[df['Days In Top 10'] == df['Days In Top 10'].max()].Title
+df[df['Days In Top 10'] == df['Days In Top 10'].max()]
+df[df['Days In Top 10'] == df['Days In Top 10'].max()].iloc[0]
+df[df.Title == "Cocomelon"]
+df[df.Title == "Cocomelon"].describe()
+df = pd.read_csv(r"C:\Users\kurs\Downloads\dane\netflix_daily_top_10.csv",  parse_dates=['As of', 'Netflix Release Date'], true_values=["Yes"], false_values=['No'])
+df['Age'] = df["As of"] - df["Netflix Release Date"]
+df.dtypes
+df.groupby("Title")
+df.groupby("Title").aggregate({'Age': "mean"})
+df.groupby("Title").aggregate({'Viewership Score': "max"})

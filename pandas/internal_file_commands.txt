@@ -1,0 +1,4 @@
+df = pd.read_fwf("C:/Users/kurs/Downloads/dane/txt_example1.txt")
+df = pd.read_fwf("C:/Users/kurs/Downloads/dane/txt_example1.txt", skiprows=7, skipfooter=4, widths=[15, 35, 21, 32, 24], parse_dates=['Cell latest setup time'])
+df
+df.iloc[0]

@@ -1,0 +1,714 @@
+import pandas as pd
+df = pd.read_csv(r"C:\Users\kurs\Downloads\dane\netflix_daily_top_10.csv")
+df
+           As of  Rank  ... Days In Top 10 Viewership Score
+0     2020-04-01     1  ...              9               90
+1     2020-04-01     2  ...              5               45
+2     2020-04-01     3  ...              9               76
+3     2020-04-01     4  ...              5               30
+4     2020-04-01     5  ...              9               55
+          ...   ...  ...            ...              ...
+7095  2022-03-11     6  ...             10               81
+7096  2022-03-11     7  ...             14              100
+7097  2022-03-11     8  ...              3                7
+7098  2022-03-11     9  ...             10               33
+7099  2022-03-11    10  ...              7               12
+[7100 rows x 10 columns]
+df
+           As of  Rank  ... Days In Top 10 Viewership Score
+0     2020-04-01     1  ...              9               90
+1     2020-04-01     2  ...              5               45
+2     2020-04-01     3  ...              9               76
+3     2020-04-01     4  ...              5               30
+4     2020-04-01     5  ...              9               55
+          ...   ...  ...            ...              ...
+7095  2022-03-11     6  ...             10               81
+7096  2022-03-11     7  ...             14              100
+7097  2022-03-11     8  ...              3                7
+7098  2022-03-11     9  ...             10               33
+7099  2022-03-11    10  ...              7               12
+[7100 rows x 10 columns]
+list(df)
+['As of', 'Rank', 'Year to Date Rank', 'Last Week Rank', 'Title', 'Type', 'Netflix Exclusive', 'Netflix Release Date', 'Days In Top 10', 'Viewership Score']
+
+df[:2]
+        As of  Rank  ... Days In Top 10 Viewership Score
+0  2020-04-01     1  ...              9               90
+1  2020-04-01     2  ...              5               45
+[2 rows x 10 columns]
+df[:5]
+        As of  Rank  ... Days In Top 10 Viewership Score
+0  2020-04-01     1  ...              9               90
+1  2020-04-01     2  ...              5               45
+2  2020-04-01     3  ...              9               76
+3  2020-04-01     4  ...              5               30
+4  2020-04-01     5  ...              9               55
+[5 rows x 10 columns]
+df.iloc[0]
+As of                                     2020-04-01
+Rank                                               1
+Year to Date Rank                                  1
+Last Week Rank                                     1
+Title                   Tiger King: Murder, Mayhem …
+Type                                         TV Show
+Netflix Exclusive                                Yes
+Netflix Release Date                    Mar 20, 2020
+Days In Top 10                                     9
+Viewership Score                                  90
+Name: 0, dtype: object
+df.dtypes
+As of                   object
+Rank                     int64
+Year to Date Rank       object
+Last Week Rank          object
+Title                   object
+Type                    object
+Netflix Exclusive       object
+Netflix Release Date    object
+Days In Top 10           int64
+Viewership Score         int64
+dtype: object
+df['Days In Top 10']
+0        9
+1        5
+2        9
+3        5
+4        9
+        ..
+7095    10
+7096    14
+7097     3
+7098    10
+7099     7
+Name: Days In Top 10, Length: 7100, dtype: int64
+df['Days In Top 10'].max()
+428
+df['Viewership Score'].mean()
+122.79014084507043
+df['Viewership Score'].describe()
+count    7100.000000
+mean      122.790141
+std       213.861642
+min         1.000000
+25%        19.000000
+50%        50.000000
+75%       128.000000
+max      1474.000000
+Name: Viewership Score, dtype: float64
+df
+           As of  Rank  ... Days In Top 10 Viewership Score
+0     2020-04-01     1  ...              9               90
+1     2020-04-01     2  ...              5               45
+2     2020-04-01     3  ...              9               76
+3     2020-04-01     4  ...              5               30
+4     2020-04-01     5  ...              9               55
+          ...   ...  ...            ...              ...
+7095  2022-03-11     6  ...             10               81
+7096  2022-03-11     7  ...             14              100
+7097  2022-03-11     8  ...              3                7
+7098  2022-03-11     9  ...             10               33
+7099  2022-03-11    10  ...              7               12
+[7100 rows x 10 columns]
+df.Type
+0       TV Show
+1       TV Show
+2       TV Show
+3         Movie
+4         Movie
+         ...
+7095    TV Show
+7096    TV Show
+7097      Movie
+7098      Movie
+7099      Movie
+Name: Type, Length: 7100, dtype: object
+df.Type.unique()
+array(['TV Show', 'Movie', 'Stand-Up Comedy', 'Concert/Perf…'],
+      dtype=object)
+df[df.Type == 'Stand-Up Comedy']
+           As of  Rank  ... Days In Top 10 Viewership Score
+143   2020-04-15     4  ...              1                7
+153   2020-04-16     4  ...              2               14
+168   2020-04-17     9  ...              3               16
+355   2020-05-06     6  ...              1                5
+362   2020-05-07     3  ...              2               13
+374   2020-05-08     5  ...              3               19
+387   2020-05-09     8  ...              4               22
+397   2020-05-10     8  ...              5               25
+912   2020-07-01     3  ...              1                8
+923   2020-07-02     4  ...              2               15
+936   2020-07-03     7  ...              3               19
+947   2020-07-04     8  ...              4               22
+958   2020-07-05     9  ...              5               24
+2311  2020-11-18     2  ...              1                9
+2321  2020-11-19     2  ...              2               18
+2332  2020-11-20     3  ...              3               26
+2342  2020-11-21     3  ...              4               34
+2351  2020-11-22     2  ...              5               43
+2361  2020-11-23     2  ...              6               52
+2372  2020-11-24     3  ...              7               60
+2384  2020-11-25     5  ...              8               66
+2396  2020-11-26     7  ...              9               70
+2407  2020-11-27     8  ...             10               73
+4339  2021-06-08    10  ...              1                1
+4359  2021-06-10    10  ...              2                2
+5543  2021-10-07     4  ...              1                7
+5553  2021-10-08     4  ...              2               14
+5562  2021-10-09     3  ...              3               22
+5572  2021-10-10     3  ...              4               30
+5582  2021-10-11     3  ...              5               38
+5592  2021-10-12     3  ...              6               46
+5602  2021-10-13     3  ...              7               54
+5613  2021-10-14     4  ...              8               61
+5623  2021-10-15     4  ...              9               68
+5634  2021-10-16     5  ...             10               74
+5645  2021-10-17     6  ...             11               79
+5657  2021-10-18     8  ...             12               82
+5668  2021-10-19     9  ...             13               84
+5689  2021-10-21    10  ...             14               85
+5698  2021-10-22     9  ...             15               87
+5709  2021-10-23    10  ...             16               88
+[41 rows x 10 columns]
+df.Type == 'Stand-Up Comedy'
+0       False
+1       False
+2       False
+3       False
+4       False
+        ...
+7095    False
+7096    False
+7097    False
+7098    False
+7099    False
+Name: Type, Length: 7100, dtype: bool
+df[df.Type == 'Stand-Up Comedy']
+           As of  Rank  ... Days In Top 10 Viewership Score
+143   2020-04-15     4  ...              1                7
+153   2020-04-16     4  ...              2               14
+168   2020-04-17     9  ...              3               16
+355   2020-05-06     6  ...              1                5
+362   2020-05-07     3  ...              2               13
+374   2020-05-08     5  ...              3               19
+387   2020-05-09     8  ...              4               22
+397   2020-05-10     8  ...              5               25
+912   2020-07-01     3  ...              1                8
+923   2020-07-02     4  ...              2               15
+936   2020-07-03     7  ...              3               19
+947   2020-07-04     8  ...              4               22
+958   2020-07-05     9  ...              5               24
+2311  2020-11-18     2  ...              1                9
+2321  2020-11-19     2  ...              2               18
+2332  2020-11-20     3  ...              3               26
+2342  2020-11-21     3  ...              4               34
+2351  2020-11-22     2  ...              5               43
+2361  2020-11-23     2  ...              6               52
+2372  2020-11-24     3  ...              7               60
+2384  2020-11-25     5  ...              8               66
+2396  2020-11-26     7  ...              9               70
+2407  2020-11-27     8  ...             10               73
+4339  2021-06-08    10  ...              1                1
+4359  2021-06-10    10  ...              2                2
+5543  2021-10-07     4  ...              1                7
+5553  2021-10-08     4  ...              2               14
+5562  2021-10-09     3  ...              3               22
+5572  2021-10-10     3  ...              4               30
+5582  2021-10-11     3  ...              5               38
+5592  2021-10-12     3  ...              6               46
+5602  2021-10-13     3  ...              7               54
+5613  2021-10-14     4  ...              8               61
+5623  2021-10-15     4  ...              9               68
+5634  2021-10-16     5  ...             10               74
+5645  2021-10-17     6  ...             11               79
+5657  2021-10-18     8  ...             12               82
+5668  2021-10-19     9  ...             13               84
+5689  2021-10-21    10  ...             14               85
+5698  2021-10-22     9  ...             15               87
+5709  2021-10-23    10  ...             16               88
+[41 rows x 10 columns]
+df[df.Type == 'Stand-Up Comedy'].Title
+143            Chris DâElia: No Pain
+153            Chris DâElia: No Pain
+168            Chris DâElia: No Pain
+355       Jerry Seinfeld: 23 Hours to…
+362       Jerry Seinfeld: 23 Hours to…
+374       Jerry Seinfeld: 23 Hours to…
+387       Jerry Seinfeld: 23 Hours to…
+397       Jerry Seinfeld: 23 Hours to…
+912     George Lopez: Weâll Do It f…
+923     George Lopez: Weâll Do It f…
+936     George Lopez: Weâll Do It f…
+947     George Lopez: Weâll Do It f…
+958     George Lopez: Weâll Do It f…
+2311      Kevin Hart: Zero F**ks Given
+2321      Kevin Hart: Zero F**ks Given
+2332      Kevin Hart: Zero F**ks Given
+2342      Kevin Hart: Zero F**ks Given
+2351      Kevin Hart: Zero F**ks Given
+2361      Kevin Hart: Zero F**ks Given
+2372      Kevin Hart: Zero F**ks Given
+2384      Kevin Hart: Zero F**ks Given
+2396      Kevin Hart: Zero F**ks Given
+2407      Kevin Hart: Zero F**ks Given
+4339                Bo Burnham: Inside
+4359                Bo Burnham: Inside
+5543        Dave Chappelle: The Closer
+5553        Dave Chappelle: The Closer
+5562        Dave Chappelle: The Closer
+5572        Dave Chappelle: The Closer
+5582        Dave Chappelle: The Closer
+5592        Dave Chappelle: The Closer
+5602        Dave Chappelle: The Closer
+5613        Dave Chappelle: The Closer
+5623        Dave Chappelle: The Closer
+5634        Dave Chappelle: The Closer
+5645        Dave Chappelle: The Closer
+5657        Dave Chappelle: The Closer
+5668        Dave Chappelle: The Closer
+5689        Dave Chappelle: The Closer
+5698        Dave Chappelle: The Closer
+5709        Dave Chappelle: The Closer
+Name: Title, dtype: object
+df[df.Type == 'Stand-Up Comedy'].Title.unique()
+array(['Chris Dâ\x80\x99Elia: No Pain', 'Jerry Seinfeld: 23 Hours to…',
+       'George Lopez: Weâ\x80\x99ll Do It f…',
+       'Kevin Hart: Zero F**ks Given', 'Bo Burnham: Inside',
+       'Dave Chappelle: The Closer'], dtype=object)
+df[df['Viewership Score'] < 10].Title.unique()
+array(['Unorthodox', 'Nailed It!', 'How to Fix a Drug Scandal',
+       'The Roommate', 'The Players Club', 'Salt', 'Money Heist',
+       'Coffee & Kareem', 'Angel Has Fallen', 'The Hangover',
+       'The Big Show Show', 'Legacies', 'Community',
+       'Love Wedding Repeat', 'Code 8', 'Hop', 'The Main Event',
+       'Chris Dâ\x80\x99Elia: No Pain', 'The Innocence Files',
+       'Outer Banks', 'Too Hot to Handle', '#blackAF', 'Waco',
+       'The Green Hornet', 'Cooked with Cannabis', 'The Willoughbys',
+       'Absurd Planet', 'Django Unchained', 'Coronavirus, Explained',
+       'The Last Kingdom', 'Never Have I Ever',
+       'Murder to Mercy: The Cyntoi…', 'Dangerous Lies',
+       'All Day and a Night', 'Hollywood', 'Den of Thieves',
+       'The Half of It', 'Arctic Dogs', 'Jerry Seinfeld: 23 Hours to…',
+       'Becoming', 'Workinâ\x80\x99 Moms', 'Sleepless', 'John Henry',
+       'Greyâ\x80\x99s Anatomy', 'Have a Good Trip: Adventure…',
+       'Trial by Media', 'House at the End of the Street',
+       'The Wrong Missy', 'Riverdale', 'White Lines', 'Public Enemies',
+       'Magic for Humans', 'Soul Surfer', 'Sweet Magnolias', 'The Flash',
+       'The Lovebirds', 'Just Go With It', 'History 101', 'Uncut Gems',
+       'The Healer', 'Fuller House', 'The Help', 'Clueless',
+       'Cloudy with a Chance of Mea…', 'The Last Days of American C…',
+       'Queer Eye', '365 Days', 'Queen of the South', 'Hannibal',
+       'Da 5 Bloods', 'PokÃ©mon Journeys: The Series', 'F is for Family',
+       'Alexa & Katie', 'How to Get Away with Murder', 'Mr. Iglesias',
+       'The Order', 'Magnetic', 'Feel the Beat', 'Lost Bullet',
+       'The Nut Job', 'Baby Mama', 'Love', 'Athlete A',
+       'Eurovision Song Contest: Th…', 'Crazy Delicious', 'Home Game',
+       'George Lopez: Weâ\x80\x99ll Do It f…', 'Dark', 'Patriots Day',
+       'The Town', 'Warrior Nun', 'A Thousand Words',
+       'The Baby-Sitters Club', 'Desperados',
+       'I Now Pronounce You Chuck a…', 'Double Jeopardy', 'Only',
+       'Dr. Seussâ\x80\x99 The Lorax', 'The Epic Tales of Captain U…',
+       'Down to Earth with Zac Efron', 'The Business of Drugs',
+       'The Office', 'Dark Desire', 'Cursed', 'The Last Dance',
+       'Indian Matchmaking', 'In the Dark',
+       'Fear City: New York vs. The…', 'Ip Man 4: The Finale',
+       'Animal Crackers', 'The Kissing Booth', 'Shameless',
+       'Last Chance U', 'Transformers: War for Cyber…', 'Zookeeper',
+       'Sugar Rush', 'Moesha', 'Rogue Warfare: The Hunt',
+       'Latte & the Magic Waterstone', 'Immigration Nation',
+       'Malibu Rescue: The Next Wave', 'Jurassic Park',
+       'Worldâ\x80\x99s Most Wanted', 'Dennis the Menace',
+       'The Seven Deadly Sins', 'Work It', 'Wizards: Tales of Arcadia',
+       'Selling Sunset', 'The Lost Husband',
+       'Game On: A Comedy Crossover…', 'Mr. Peabody & Sherman',
+       '(Un)Well', 'The Legend of Korra', 'Teenage Bounty Hunters',
+       'Glow Up', 'The Game', 'High Score', 'Drunk Parents',
+       'The Sleepover', 'Rust Valley Restorers', 'Hoops', '1BR',
+       'Trinkets', 'Million Dollar Beach House', 'Bunkâ\x80\x99d',
+       'Cocomelon', 'I Am a Killer Released', 'The Frozen Ground',
+       'Quantum of Solace', 'The Smurfs', 'Sister, Sister', 'Due Date',
+       'The Boss Baby: Get That Baby', 'Chefâ\x80\x99s Table: BBQ',
+       'Love, Guaranteed', 'Away', 'Anaconda', 'Puss in Boots', '#Alive',
+       'Get Organized with The Home…', 'The Babysitter: Killer Queen',
+       'The Social Dilemma', 'Pets United', 'Girlfriends', 'Cuties',
+       'Julie and the Phantoms', 'Ancient Aliens',
+       'How to Train Your Dragon 2', 'The Smurfs 2',
+       'Challenger: The Final Flight', 'The Paramedic', 'The Take',
+       'Jurassic World: Camp Cretac…', 'The Blacklist',
+       'The American Barbecue Showdown', 'Enola Holmes', 'Real Steel',
+       'The Great British Baking Show', 'The Good Place', 'Sneakerheads',
+       'Bad Teacher', 'Welcome to Sudden Death', 'Wentworth',
+       'The Outpost', 'Yogi Bear', 'Emily in Paris',
+       'Schittâ\x80\x99s Creek', 'Evil', 'Big Daddy', 'Colombiana',
+       'American Pie Presents: Girl…', 'The 100',
+       'The Haunting of Bly Manor', 'The Cabin with Bert Kreischer',
+       'Moneyball', 'One on One', 'The Trial of the Chicago 7',
+       'A Babysitterâ\x80\x99s Guide to Mon…', 'Dream Home Makeover',
+       'Tremors: Shrieker Island', 'Grand Army', 'Rebecca',
+       'My Next Guest Needs No Intr…', 'Yes, God, Yes', 'Over the Moon',
+       'Barbarians', 'The Queenâ\x80\x99s Gambit', 'Blood of Zeus',
+       'Secrets of the Saqqara Tomb', 'Rogue City', 'His House',
+       'Knock Knock', 'Mile 22', 'Snowden', 'Easy A',
+       'Chappelleâ\x80\x99s Show', 'Operation Christmas Drop',
+       'The Impossible', 'Midnight at the Magnolia', 'Dash & Lily',
+       'Illumination Presents The G…', '60 Days In', 'Trial 4',
+       'The Liberator', 'Jingle Jangle: A Christmas …',
+       'American Horror Story', 'The Life Ahead', 'Hometown Holiday',
+       'Kevin Hart: Zero F**ks Given', 'Survivor',
+       'The Princess Switch: Switch…', 'Christmas on the Square',
+       'If Anything Happens I Love You', 'Hard Kill',
+       'The Christmas Chronicles', 'How the Grinch Stole Christmas',
+       'Virgin River', 'The Beast', 'The 2nd', 'Peppermint', 'Rust Creek',
+       'Alien Worlds', 'Marauders', 'Big Mouth', 'Ava', 'Triple 9',
+       'Manhunt: Deadly Games', 'The Prom', 'Tiny Pretty Things',
+       'The Ripper', 'Braven', 'Ariana Grande: Excuse Me, I…',
+       'Sweet Home', 'Klaus', 'Bridgerton', 'We Can Be Heroes',
+       'Death to 2020', 'The Croods', 'Dare Me: Season 1',
+       'Chilling Adventures of Sabrina', 'Rango', 'Dare Me', 'Unknown',
+       '17 Again', '30 Minutes or Less', 'The Netflix Afterparty',
+       'History of Swear Words', "Gabby's Dollhouse", 'Pieces of a Woman',
+       'Surviving Death', 'Lupin', "L.A.'s Finest",
+       'Jenni Rivera: Mariposa de B…', 'Night Stalker: The Hunt for…',
+       'Outside the Wire', 'Disenchantment', 'Henry Danger',
+       'Bling Empire', 'The Vanished', 'Homefront', 'Cut Throat City',
+       'The White Tiger', 'The Next Three Days',
+       'Demon Slayer: Kimetsu No Yaiba', 'Go, Dog, Go', 'The Dig',
+       'Finding â\x80\x99Ohana', 'All About the Benjamins',
+       'Malcolm & Marie', 'The Sinner', 'Space Sweepers',
+       'Are We There Yet?', 'iCarly', 'War Dogs', 'Squared Love',
+       'Red Dot', 'The Crew', 'Good Girls',
+       'Animals on the Loose: A You…', 'Behind Her Eyes',
+       'Tribes of Europa', 'The Conjuring 2', 'Ginny & Georgia',
+       'Age of Samurai: Battle for …', 'Canine Intervention',
+       'Bigfoot Family', 'Biggie: I Got A Story to Tell',
+       'Step Up Revolution', 'Murder Among the Mormons', 'Moxie',
+       'Training Day', 'Sentinelle', 'The Dark Knight', 'Parker',
+       'Last Chance U: Basketball', 'Marriage or Mortgage', 'The One',
+       'Paradise PD', 'The Lost Pirate Kingdom', 'Savages',
+       'Operation Varsity Blues', 'The Last Blockbuster',
+       'Deadly Illusions', 'Skylines', 'Jiu Jitsu', 'Country Comfort',
+       'Who Killed Sara?', 'Seaspiracy', 'Secret Magic Control Agency',
+       'A Week Away', 'The Secret Life of Pets 2', 'The BFG',
+       'The Irregulars', 'Big Time Rush', 'Octonauts & The Ring of Fire',
+       'Friends with Benefits', 'Concrete Cowboy', 'Hasta el cielo',
+       'Worn Stories', 'The Serpent', 'White Boy', 'What Lies Below',
+       'Sniper: Ghost Shooter', 'Family Reunion', 'Saving Private Ryan',
+       'Legally Blonde', 'This is a Robbery: The Worl…',
+       'The Little Rascals', 'The Stand-In', 'Nicky, Ricky, Dicky & Dawn',
+       'Dad Stop Embarrassing Me!', 'Why Did You Kill Me?',
+       'The Circle US', 'The Baker and the Beauty', 'Stowaway',
+       'Life in Color with David At…', 'American Me',
+       'Things Heard & Seen', 'Yasuke', 'The Innocent',
+       "Madagascar 3: Europe's Most…", 'Love Happens', 'Green Zone',
+       'Your Highness', 'Monster', 'Dead Man Down', 'StartUp',
+       'The Upshaws', 'CastleVania', 'Jungle Beat: The Movie', 'Halston',
+       'I Am All Girls', 'Love, Death & Robots', 'Sabotage', 'Home',
+       'Blue Miracle', 'Ragnarok', 'Dog Gone Trouble',
+       'The Kominsky Method', 'Dirty John', '2 Hearts',
+       "Kim's Convenience", 'Sweet Tooth', 'Monsters vs. Aliens',
+       'Xtreme', 'Bo Burnham: Inside', 'Awake', 'Manifest', 'Wish Dragon',
+       'A Haunted House 2', 'The Devil Below', 'Black Summer',
+       'Ã\x89lite', 'The Worldâ\x80\x99s Most Amazing Va…',
+       'Good on Paper', 'Sex/Life', 'Sophie: A Murder in West Cork',
+       'The Bureau of Magical Things', 'Fear Street Part 1: 1994',
+       "Mother's Day", 'Talladega Nights: The Balla…', 'Kung Fu Panda',
+       'Resident Evil: Infinite Dar…', 'Major Grom: Plague Doctor',
+       'Fear Street Part 2: 1978', 'Atypical', 'The Cook of Castamar',
+       'Gunpowder Milkshake', 'Heist', 'Fear Street Part 3: 1666',
+       'Twilight', 'The Twilight Saga: New Moon',
+       'The Twilight Saga: Eclipse', 'The Twilight Saga: Breaking…',
+       'Trollhunters: Rise of the T…', 'Blood Red Sky',
+       'Masters of the Universe: Re…', 'The Last Letter From Your L…',
+       'The Walking Dead', 'Resort to Love', 'The Vault', 'The Losers',
+       'Top Secret UFO Projects: De…', 'Cocaine Cowboys: The Kings …',
+       'Aftermath', 'Vivo', 'Hit & Run', 'Major Payne', 'Untold',
+       'Beckett', 'Grace and Frankie', 'Bake Squad', 'Black Island',
+       'The Loud House Movie', 'The Chair', 'The Defeated',
+       'The Witcher: Nightmare of t…', 'Clickbait',
+       'Bob Ross: Happy Accidents, …', 'SAS: Red Notice', 'Green Lantern',
+       'Welcome Home Roscoe Jenkins', 'Turning Point: 9/11 and the…',
+       'Afterlife of the Party', 'Sharkdog', 'Worth', 'On the Verge',
+       'Prey', 'An Unfinished Life', 'Safe House', 'Nightbooks',
+       'Squid Game', 'The Father Who Moves Mountains', 'Intrusion',
+       'Grown Ups', 'Monsters Inside: The 24 Fac…',
+       'My Little Pony: A New Gener…', 'Midnight Mass', 'The Starling',
+       'Britney vs Spears', 'No One Gets Out Alive', 'The Guilty', 'Maid',
+       'Seinfeld', 'The DUFF', 'Titanic', 'Dave Chappelle: The Closer',
+       'Thereâ\x80\x99s Someone Inside Your…', 'The Five Juanas',
+       'The Forgotten Battle', 'Going in Style', 'My Name', 'Night Teeth',
+       'Locke & Key', 'Inside Job', 'Maya and the Three',
+       'King Arthur: Legend of the …', 'Hypnotic', 'Army of Thieves',
+       'Colin in Black & White', '21 Jump Street', 'Replicas',
+       'Catching Killers', 'Love Hard', 'Narcos: Mexico', 'Arcane',
+       'The Thundermans', 'Passing', 'Animal', 'American Pie: Reunion',
+       'The Queen of Flow', 'Cowboy Bebop', 'Hellbound',
+       'Here Comes the Boom', 'Bruised', 'A Boy Called Christmas',
+       'A Castle for Christmas', 'School of Chocolate', 'Elves',
+       'The Power of the Dog', 'Jojoâ\x80\x99s Bizarre Adventure', 'Life',
+       'Single all the Way', 'Single All the Way', 'Ink Master',
+       'Law Abiding Citizen', 'Peter Rabbit 2', 'Back to the Outback',
+       'The Shack', 'Twentysomethings: Austin', 'The Witcher',
+       'Selling Tampa', 'A California Christmas: Cit…',
+       'Grumpy Christmas', 'WWII in Color: Road to Victory',
+       'White Christmas', 'The Silent Sea',
+       'Daughter From Another Mother', 'Death to 2021',
+       'Crime Scene: The Times Squa…', 'The Lost Daughter', 'Stay Close',
+       'Journey 2: The Mysterious I…', 'Scary Stories to Tell in th…',
+       'The Longest Yard', 'Dark Shadows', 'Hype House', 'The Colony',
+       'Brazen', 'Archive 81', 'After We Fell',
+       'The Puppet Master: Hunting …', 'The Royal Treatment',
+       'Annabelle: Creation', 'That Girl Lay Lay',
+       'Munich: The Edge of War', 'Chosen', 'I Am Georgina',
+       'The Woman in the House Acro…', 'All of Us Are Dead', 'Home Team',
+       'In From the Cold', 'Feria: The Darkest Light',
+       'Can You Keep a Secret?', 'Raising Dion',
+       'Transformers: Revenge of th…', 'Despicable Me 2',
+       'The Tinder Swindler', 'The Lucky One', 'Murderville',
+       'Tall Girl 2', 'St. Vincent', 'jeen-yuhs: A Kanye Trilogy',
+       'Blackhat', 'Fistful of Vengeance', 'Texas Chainsaw Massacre',
+       'The Cuphead Show', 'Vikings: Valhalla', 'Restless',
+       'Worst Roommate Ever', 'Shrek 2', 'Battleship', 'Just Like Heaven',
+       'Against the Ice', 'The Weekend Away', 'Pieces of Her', 'Shrek',
+       'Shooter'], dtype=object)
+df[df.Type == 'Stand-Up Comedy'].Title.unique()
+array(['Chris Dâ\x80\x99Elia: No Pain', 'Jerry Seinfeld: 23 Hours to…',
+       'George Lopez: Weâ\x80\x99ll Do It f…',
+       'Kevin Hart: Zero F**ks Given', 'Bo Burnham: Inside',
+       'Dave Chappelle: The Closer'], dtype=object)
+df[df.Type == 'Stand-Up Comedy'].Title
+143            Chris DâElia: No Pain
+153            Chris DâElia: No Pain
+168            Chris DâElia: No Pain
+355       Jerry Seinfeld: 23 Hours to…
+362       Jerry Seinfeld: 23 Hours to…
+374       Jerry Seinfeld: 23 Hours to…
+387       Jerry Seinfeld: 23 Hours to…
+397       Jerry Seinfeld: 23 Hours to…
+912     George Lopez: Weâll Do It f…
+923     George Lopez: Weâll Do It f…
+936     George Lopez: Weâll Do It f…
+947     George Lopez: Weâll Do It f…
+958     George Lopez: Weâll Do It f…
+2311      Kevin Hart: Zero F**ks Given
+2321      Kevin Hart: Zero F**ks Given
+2332      Kevin Hart: Zero F**ks Given
+2342      Kevin Hart: Zero F**ks Given
+2351      Kevin Hart: Zero F**ks Given
+2361      Kevin Hart: Zero F**ks Given
+2372      Kevin Hart: Zero F**ks Given
+2384      Kevin Hart: Zero F**ks Given
+2396      Kevin Hart: Zero F**ks Given
+2407      Kevin Hart: Zero F**ks Given
+4339                Bo Burnham: Inside
+4359                Bo Burnham: Inside
+5543        Dave Chappelle: The Closer
+5553        Dave Chappelle: The Closer
+5562        Dave Chappelle: The Closer
+5572        Dave Chappelle: The Closer
+5582        Dave Chappelle: The Closer
+5592        Dave Chappelle: The Closer
+5602        Dave Chappelle: The Closer
+5613        Dave Chappelle: The Closer
+5623        Dave Chappelle: The Closer
+5634        Dave Chappelle: The Closer
+5645        Dave Chappelle: The Closer
+5657        Dave Chappelle: The Closer
+5668        Dave Chappelle: The Closer
+5689        Dave Chappelle: The Closer
+5698        Dave Chappelle: The Closer
+5709        Dave Chappelle: The Closer
+Name: Title, dtype: object
+df = pd.read_csv(r"C:\Users\kurs\Downloads\dane\netflix_daily_top_10.csv", encoding='utf-8')
+df[df.Type == 'Stand-Up Comedy'].Title
+143            Chris DâElia: No Pain
+153            Chris DâElia: No Pain
+168            Chris DâElia: No Pain
+355       Jerry Seinfeld: 23 Hours to…
+362       Jerry Seinfeld: 23 Hours to…
+374       Jerry Seinfeld: 23 Hours to…
+387       Jerry Seinfeld: 23 Hours to…
+397       Jerry Seinfeld: 23 Hours to…
+912     George Lopez: Weâll Do It f…
+923     George Lopez: Weâll Do It f…
+936     George Lopez: Weâll Do It f…
+947     George Lopez: Weâll Do It f…
+958     George Lopez: Weâll Do It f…
+2311      Kevin Hart: Zero F**ks Given
+2321      Kevin Hart: Zero F**ks Given
+2332      Kevin Hart: Zero F**ks Given
+2342      Kevin Hart: Zero F**ks Given
+2351      Kevin Hart: Zero F**ks Given
+2361      Kevin Hart: Zero F**ks Given
+2372      Kevin Hart: Zero F**ks Given
+2384      Kevin Hart: Zero F**ks Given
+2396      Kevin Hart: Zero F**ks Given
+2407      Kevin Hart: Zero F**ks Given
+4339                Bo Burnham: Inside
+4359                Bo Burnham: Inside
+5543        Dave Chappelle: The Closer
+5553        Dave Chappelle: The Closer
+5562        Dave Chappelle: The Closer
+5572        Dave Chappelle: The Closer
+5582        Dave Chappelle: The Closer
+5592        Dave Chappelle: The Closer
+5602        Dave Chappelle: The Closer
+5613        Dave Chappelle: The Closer
+5623        Dave Chappelle: The Closer
+5634        Dave Chappelle: The Closer
+5645        Dave Chappelle: The Closer
+5657        Dave Chappelle: The Closer
+5668        Dave Chappelle: The Closer
+5689        Dave Chappelle: The Closer
+5698        Dave Chappelle: The Closer
+5709        Dave Chappelle: The Closer
+Name: Title, dtype: object
+df[df.Type == 'Stand-Up Comedy'].Title.iloc[0]
+'Chris Dâ\x80\x99Elia: No Pain'
+print(df[df.Type == 'Stand-Up Comedy'].Title.iloc[0])
+Chris DâElia: No Pain
+#df[df['Viewership Score'] < 10].Title
+df
+           As of  Rank  ... Days In Top 10 Viewership Score
+0     2020-04-01     1  ...              9               90
+1     2020-04-01     2  ...              5               45
+2     2020-04-01     3  ...              9               76
+3     2020-04-01     4  ...              5               30
+4     2020-04-01     5  ...              9               55
+          ...   ...  ...            ...              ...
+7095  2022-03-11     6  ...             10               81
+7096  2022-03-11     7  ...             14              100
+7097  2022-03-11     8  ...              3                7
+7098  2022-03-11     9  ...             10               33
+7099  2022-03-11    10  ...              7               12
+[7100 rows x 10 columns]
+list(df)
+['As of', 'Rank', 'Year to Date Rank', 'Last Week Rank', 'Title', 'Type', 'Netflix Exclusive', 'Netflix Release Date', 'Days In Top 10', 'Viewership Score']
+df[df['Days In Top 10'] == df['Days In Top 10'].max()].Title
+6998    Cocomelon
+Name: Title, dtype: object
+df[df['Days In Top 10'] == df['Days In Top 10'].max()]
+           As of  Rank  ... Days In Top 10 Viewership Score
+6998  2022-03-01     9  ...            428             1474
+[1 rows x 10 columns]
+df[df['Days In Top 10'] == df['Days In Top 10'].max()].iloc[0]
+As of                    2022-03-01
+Rank                              9
+Year to Date Rank                 -
+Last Week Rank                    -
+Title                     Cocomelon
+Type                        TV Show
+Netflix Exclusive               NaN
+Netflix Release Date    Jun 1, 2020
+Days In Top 10                  428
+Viewership Score               1474
+Name: 6998, dtype: object
+df[df.Title == "Cocomelon"]
+           As of  Rank  ... Days In Top 10 Viewership Score
+1498  2020-08-28     9  ...              1                2
+1508  2020-08-29     9  ...              2                4
+1518  2020-08-30     9  ...              3                6
+1528  2020-08-31     9  ...              4                8
+1535  2020-09-01     6  ...              5               13
+          ...   ...  ...            ...              ...
+6674  2022-01-28     5  ...            424             1466
+6687  2022-01-29     8  ...            425             1469
+6718  2022-02-01     9  ...            426             1471
+6959  2022-02-25    10  ...            427             1472
+6998  2022-03-01     9  ...            428             1474
+[428 rows x 10 columns]
+df[df.Title == "Cocomelon"].describe()
+             Rank  Days In Top 10  Viewership Score
+count  428.000000      428.000000        428.000000
+mean     7.556075      214.500000        725.121495
+std      1.739239      123.697211        458.796546
+min      3.000000        1.000000          2.000000
+25%      6.000000      107.750000        301.250000
+50%      8.000000      214.500000        705.500000
+75%      9.000000      321.250000       1153.250000
+max     10.000000      428.000000       1474.000000
+df = pd.read_csv(r"C:\Users\kurs\Downloads\dane\netflix_daily_top_10.csv",  parse_dates=['As of', 'Netflix Release Date'], true_values=["Yes"], false_values=['No'])
+df
+          As of  Rank  ... Days In Top 10 Viewership Score
+0    2020-04-01     1  ...              9               90
+1    2020-04-01     2  ...              5               45
+2    2020-04-01     3  ...              9               76
+3    2020-04-01     4  ...              5               30
+4    2020-04-01     5  ...              9               55
+         ...   ...  ...            ...              ...
+7095 2022-03-11     6  ...             10               81
+7096 2022-03-11     7  ...             14              100
+7097 2022-03-11     8  ...              3                7
+7098 2022-03-11     9  ...             10               33
+7099 2022-03-11    10  ...              7               12
+[7100 rows x 10 columns]
+df.dtypes
+As of                   datetime64[ns]
+Rank                             int64
+Year to Date Rank               object
+Last Week Rank                  object
+Title                           object
+Type                            object
+Netflix Exclusive               object
+Netflix Release Date    datetime64[ns]
+Days In Top 10                   int64
+Viewership Score                 int64
+dtype: object
+df['Age'] = df["As of"] - df["Netflix Release Date"]
+df
+          As of  Rank  ... Viewership Score       Age
+0    2020-04-01     1  ...               90   12 days
+1    2020-04-01     2  ...               45  985 days
+2    2020-04-01     3  ...               76  370 days
+3    2020-04-01     4  ...               30    6 days
+4    2020-04-01     5  ...               55   12 days
+         ...   ...  ...              ...       ...
+7095 2022-03-11     6  ...               81   10 days
+7096 2022-03-11     7  ...              100   14 days
+7097 2022-03-11     8  ...                7 2779 days
+7098 2022-03-11     9  ...               33   10 days
+7099 2022-03-11    10  ...               12 1410 days
+[7100 rows x 11 columns]
+df.dtypes
+As of                    datetime64[ns]
+Rank                              int64
+Year to Date Rank                object
+Last Week Rank                   object
+Title                            object
+Type                             object
+Netflix Exclusive                object
+Netflix Release Date     datetime64[ns]
+Days In Top 10                    int64
+Viewership Score                  int64
+Age                     timedelta64[ns]
+dtype: object
+df.groupby("Title")
+<pandas.core.groupby.generic.DataFrameGroupBy object at 0x000001BFAA2E6150>
+df.groupby("Title").aggregate({'Age': "mean"})
+                                                  Age
+Title
+#Alive                                3 days 12:00:00
+#blackAF                              4 days 12:00:00
+(Un)Well                              4 days 12:00:00
+13 Reasons Why                     1173 days 12:00:00
+17 Again                              4 days 00:00:00
+                                               ...
+Your Highness                         3 days 00:00:00
+Zookeeper                             6 days 00:00:00
+iCarly                     21 days 18:51:25.714285714
+jeen-yuhs: A Kanye Trilogy            9 days 18:00:00
+Ãlite                              991 days 00:00:00
+[645 rows x 1 columns]
+df.groupby("Title").aggregate({'Viewership Score': "max"})
+                            Viewership Score
+Title
+#Alive                                    34
+#blackAF                                  35
+(Un)Well                                  24
+13 Reasons Why                           162
+17 Again                                  33
+                                      ...
+Your Highness                              2
+Zookeeper                                  9
+iCarly                                   244
+jeen-yuhs: A Kanye Trilogy                58
+Ãlite                                    28
+[645 rows x 1 columns]
