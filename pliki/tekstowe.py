@@ -33,10 +33,16 @@ def main():
             line = line.rstrip()
             if line.startswith("(Number of results"):
                 break
+            if not line:
+                continue
             columns = line.split("  ")
             columns = filter(None, columns)  # odrzuć elementy o bool(x) == False
+            # filter zwraca generator
             columns = map(str.lstrip, columns)  # usuń spacje z początków
-            print(list(columns))
+            # map zwraca generator
+            columns = list(columns)  # przerabiamy generator na listę, bo nie można się odwołać do elementu generatora przez generator[0]
+            print(columns)
+
 
         # Zadanie: stworzyć (i wydrukować) słownik, gdzie kluczem będzie Cell local ID, a wartością technologia
         # Przykład wydruku:
