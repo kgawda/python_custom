@@ -8,6 +8,12 @@ def typowe_linijki(path):
                 continue
             print(line)
 
+technology_names = {
+    'L08': "LTE_800",
+    'L18': "LTE_1800",
+    'L21': "LTE_2100"
+}
+
 def main():
     path = "C:/Users/kurs/Downloads/dane/txt_example1.txt"
     # path = "C:\\Users\\kurs\\Downloads\\dane\\txt_example1.txt"
@@ -19,6 +25,7 @@ def main():
     #with open(path) as f:  # Context manager
     #    s = f.read()   # wczytanie całości pliku do zmiennej
 
+    sectors = {}
     with open(path) as f:
         f_iterator = iter(f)
         line1 = next(f_iterator)
@@ -41,12 +48,15 @@ def main():
             columns = map(str.lstrip, columns)  # usuń spacje z początków
             # map zwraca generator
             columns = list(columns)  # przerabiamy generator na listę, bo nie można się odwołać do elementu generatora przez generator[0]
-            print(columns)
 
+            # sectors[int(columns[0])] = columns[1][15:18]  # podstawowe rozwiązanie
+            sectors[int(columns[0])] = technology_names[columns[1][15:18]]  # rozwiązanie z ładniejszymi nazwami
 
-        # Zadanie: stworzyć (i wydrukować) słownik, gdzie kluczem będzie Cell local ID, a wartością technologia
-        # Przykład wydruku:
-        # {0: "L18", 1: "L18", ...}
+    print(sectors)
+
+    # Zadanie: stworzyć (i wydrukować) słownik, gdzie kluczem będzie Cell local ID, a wartością technologia
+    # Przykład wydruku:
+    # {0: "L18", 1: "L18", ...}
 
 if __name__ == "__main__":
     main()
