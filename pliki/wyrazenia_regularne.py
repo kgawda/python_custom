@@ -14,9 +14,28 @@ def main():
         print(match[0])  # cały zmatchowany string
         print(match.groupdict())
 
+    path = "C:/Users/kurs/Downloads/dane/txt_example1.txt"
+    with open(path) as f:
+        s = f.read()
 
+    pattern = r"(?P<region>\d)\d_(?P<site>[A-Z]{3}\d{4})(?P<prio>[A-Z])_\d{3}.\d\d_._[A-Z0-9]*"
+    # for line in s.splitlines():
+    #     match = re.search(pattern, line)
+    #     if match:
+    #         print(match.groupdict())
 
+    # print(re.findall(pattern, s)) # lista tupli z grupami
 
+    for match in re.finditer(pattern, s):
+        print(match.groupdict())
+
+    # użycie kilku flag:
+    # re.findall(pattern, s, re.DOTALL | re.MULTILINE)
 
 if __name__ == "__main__":
     main()
+
+"""
+Escaped:  . ^ $ * + - ? ( ) [ ] { } \ |
+No need to escape: _ ! % " ' , / : ; < = > @ `
+"""
