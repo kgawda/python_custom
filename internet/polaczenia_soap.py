@@ -9,3 +9,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# python -m zeep http://www.dneonline.com/calculator.asmx?WSDL
