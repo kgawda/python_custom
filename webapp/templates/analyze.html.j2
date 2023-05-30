@@ -1,0 +1,11 @@
+{% extends "base.html.j2" %}
+{% block content %}
+
+<h1 class="mt-5">{{ title }}</h1>
+
+Fun facts:
+{% for name, value in facts.items() %}
+    {{name}}: {{value}}
+{% endfor %}
+
+{% endblock %}

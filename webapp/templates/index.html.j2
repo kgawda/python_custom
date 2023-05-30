@@ -4,7 +4,7 @@
 <h1 class="mt-5">{{ title }}</h1>
 <ul>
 {% for file in files %}
-    <li>{{ file }}</li>
+    <li><a href="/analyze/{{ file.name }}">{{ file }}</a></li>
 {% endfor %}
 <ul>
 {# komentarz #}
