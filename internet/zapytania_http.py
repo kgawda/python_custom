@@ -42,9 +42,19 @@ def rest():
     print(official_estonian_translation)
     # lub: print(x[0]["translations"]["est"]["official"])
 
+def post():
+    response = requests.post("http://example.com/form", data="Test test test", headers={'content-type': 'text/text'})
+    #print(response.text)
+
+    response = requests.post("http://example.com/", json={'example': 'value'})
+    print(response.text)
+
+    # requests.put(...)
+    # requests.delete(...)
 
 if __name__ == "__main__":
-    #wp()
+    wp()
     #badssl()
     #errors()
-    rest()
+    #rest()
+    #post()
