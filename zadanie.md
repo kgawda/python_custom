@@ -16,3 +16,8 @@ Wasza aplikacja ma odpowiadać na zapytania:
 
    Eg. if <call_server>/status returns `{"status": "Starting", "uptime": 0, "F": 1}`
    <data_name> is "status", return `{"status": "Starting"}`
+
+3. GET /calls_summary
+  Return json: `{"count": <number of calls, int>}`
+  Based on <call_server>/calls
+
