@@ -1,0 +1,13 @@
+[Unit]
+Description=TargetAPI
+After=network.target
+
+[Service]
+Type=simple
+User=admin
+WorkingDirectory=/home/admin/
+ExecStart=/home/admin/.local/bin/waitress-serve --port 5000 zadanie:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
