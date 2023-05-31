@@ -34,8 +34,14 @@ def rest():
     r.raise_for_status()
     print(r.text)
     print(r.headers.get('content-type'))
-    print(r.json())
-    # wyciągnąć str zawierającego nazwę karaju po estońsku ("est")
+    found_countries = r.json()
+    poland = found_countries[0]
+    poland_name_translations = poland["translations"]
+    estonian_translations = poland_name_translations["est"]
+    official_estonian_translation = estonian_translations["official"]
+    print(official_estonian_translation)
+    # lub: print(x[0]["translations"]["est"]["official"])
+
 
 if __name__ == "__main__":
     #wp()
