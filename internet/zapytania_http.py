@@ -6,7 +6,8 @@ def wp():
             # headers={"User-Agent": "..."}
             # timeout=10  # w sekundach
     print(response.status_code, response.url)
-    print(len(response.text), response.headers)
+    # response.headers
+    print(len(response.text), response.headers.get('content-type'))
 
 def badssl():
     # https://badssl.com/ -- fajna strona do testowania https
@@ -22,7 +23,21 @@ def errors():
     print(response.text)
 
 
+def bez_requestsow(url):
+    import urllib3
+    http = urllib3.PoolManager()
+    response = http.request('GET', url)
+    return(response.data)
+
+def rest():
+    r = requests.get("https://restcountries.com/v3.1/name/poland")
+    r.raise_for_status()
+    print(r.text)
+    print(r.headers.get('content-type'))
+    print(r.json())
+
 if __name__ == "__main__":
     #wp()
     #badssl()
-    errors()
+    #errors()
+    rest()
