@@ -35,6 +35,7 @@ def rest():
     print(r.text)
     print(r.headers.get('content-type'))
     print(r.json())
+    # wyciągnąć str zawierającego nazwę karaju po estońsku ("est")
 
 if __name__ == "__main__":
     #wp()
